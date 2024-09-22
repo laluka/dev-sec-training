@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend-java
+    ports:
+      - 127.0.0.1:80:8080
+    volumes:
+      - ./sources:/sources:rw
+    working_dir: /sources
+    command:
+      [
+        "/bin/bash",
+        "-c",
+        "source /root/.sdkman/bin/sdkman-init.sh && gradle bootRun"
+      ]
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8.0
+    # ports:
+    # - 127.0.0.1:3306:3306
+    volumes:
+      - ./sources/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./sources/dbdata:/var/lib/mysql:rw
+    command: --init-file /docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_USER: test
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: roottoor
+      MYSQL_DATABASE: workshops

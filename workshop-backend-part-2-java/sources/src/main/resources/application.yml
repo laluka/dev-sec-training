@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://mysqldb:3306/workshops
+    username: userdefault
+    password: password

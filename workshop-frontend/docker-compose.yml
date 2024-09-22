@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  frontend:
+    image: node:16.13.0
+    working_dir: /sources
+    tty: true
+    ports:
+      - 127.0.0.1:3000:3000
+    volumes:
+      - ./sources:/sources:rw
+    command: bash -c "npm install && npm start"

@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  backend:
+    image: php:7.4.26
+    ports:
+        - 127.0.0.1:80:80
+    volumes:
+    - ./sources:/sources:rw
+    working_dir: /sources
+    command: ["php", "-S", "0.0.0.0:80"]
