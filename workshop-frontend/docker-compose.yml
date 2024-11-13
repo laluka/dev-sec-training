@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   frontend:
     image: node:16.13.0
@@ -10,4 +8,4 @@ services:
       - 127.0.0.1:3000:3000
     volumes:
       - ./sources:/sources:rw # In needed, rm sources/node_modules
-    command: bash -c "echo installing deps && npm install && npm start"
+    command: bash -c "echo 'Installing deps... ☕️' && npm install && npm start"
