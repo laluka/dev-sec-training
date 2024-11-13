@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend-java
+    platform: linux/amd64
     ports:
       - 127.0.0.1:80:8080
     volumes:
@@ -21,6 +22,7 @@ services:
 
   mysqldb:
     image: mysql:8.0
+    platform: linux/amd64
     # ports:
     # - 127.0.0.1:3306:3306
     volumes:

@@ -2,20 +2,18 @@
 
 Welcome to this first playbook, here you'll learn about three vulnerabilities, regular expressions bypasses, path traversals, and mixed filesystem/routing!
 
-
 ## Regular Expression Bypass
 
 Goal: Fix the path traversal, first with the appropriate regex (or any other method of your choice *wink wink*).
 
-Loose regex are a real threat. They are the cause of many issues in the software industry, and they are an even bigger issue in firewalls!\
-In a firewall, a loose regex means that an evil payload wouldn't be blocked, and a too strict regex would break the expected feature's behavior. It's a real pain!
+Loose regex are a real threat. They are the cause of many issues in the software industry, and they are an even bigger issue in firewalls! In a firewall, a loose regex means that an evil payload wouldn't be blocked, and a too strict regex would break the expected feature's behavior. It's a real pain!
 
 - Example for UUID
-    - Good: `^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
-    - Bad : `^[\S]{34}`   # Think about the dashes, or the Infamous log4shell `jndi:ldap://X.X.X.X/evil.class`\
+  - Good: `^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$`
+  - Bad : `^[\S]{34}`   # Think about the dashes, or the Infamous log4shell `jndi:ldap://X.X.X.X/evil.class`
 - Example for PATH
-    - Good: `^/some/[\d]+/safe/path$`\
-    - Bad : `^/some/.*`   # Think about `../../../admin`\
+  - Good: `^/some/[\d]+/safe/path$`
+  - Bad : `^/some/.*`   # Think about `../../../admin`
 
 ```bash
 # Test feature
@@ -24,13 +22,12 @@ curl -sSkig 'http://127.0.0.1/list.php?dir=img' | grep -ioP 'cat[\d]+\.jpeg' # S
 curl -sSkig 'http://127.0.0.1/list.php?dir=img/../' | grep -ioP 'unguessable[^ ]+\.bak' # Should output unguessable-backup-name-982738792473.bak
 ```
 
-
 ## Path traversal - arbitrary listing
 
 Goal: Understand how directory traversal work! :)\
 Note: As the first regex fix fixed the path traversal, nothing to do here!
 
-A path traversal can occur in any kind of URI, including URLs and file paths. They are due to unsanitized & user-controled content used to construct such URI. 
+A path traversal can occur in any kind of URI, including URLs and file paths. They are due to unsanitized & user-controled content used to construct such URI.
 
 Examples:
 
@@ -39,7 +36,6 @@ Examples:
 - `http://foo.bar/profile/.././.././../`
 - `http://foo.bar/profile/..%09/..%09/`
 - `http://foo.bar/profile/..\/..\/..\/`
-
 
 ## Mixing filesystem & code logic - backup file
 

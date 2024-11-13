@@ -2,7 +2,6 @@
 
 Welcome to this sixth playbook, here you'll learn about the dangers of code evaluation and unsafe uses of the include built php function.
 
-
 ## Included code
 
 Goal: Fix the unsafe code inclusion.
@@ -11,7 +10,6 @@ This issue is mostly specific to php but can also be found in various others lan
 
 Here, a hint file can be included, but due to the lack of input sanitization (again!), it's possible to include any file on the machine by using a path traversal attack. This also implies that any valid php file can also be included and executed!
 
-
 ```bash
 # Test feature
 curl -sSkgi 'http://127.0.0.1/game.php?regex=foo&hint=hint1' # Should output "[...] You lost this time... Let's try again!\nLetter 1 is a... m ! :D"
@@ -19,7 +17,6 @@ curl -sSkgi 'http://127.0.0.1/game.php?regex=foo'            # Should output "[.
 # Test exploit
 curl -sSkgi 'http://127.0.0.1/game.php?regex=<?php+system(id);?>&hint=../../../../../../tmp/regex' # Should output: "[...] uid=0(root) gid=0(root) groups=0(root)"
 ```
-
 
 ## Evaluated code
 
@@ -36,5 +33,3 @@ curl -sSkgi 'http://127.0.0.1/game.php?regex=m4gicword' # Should output "Regex m
 # Test exploit
 curl -sSkgi 'http://127.0.0.1/game.php?regex=.*/","foo",$foo);system("id");//' # Should output: "uid=0(root) gid=0(root) groups=0(root)\nYou won!"
 ```
-
-

@@ -2,7 +2,6 @@
 
 Welcome to this fourth playbook, here you'll learn about basic SQL injections, and type-juggling issues!
 
-
 ## SQL Injection
 
 Goal: Fix the SQL injection to protect the authentication mechanism from suck issue.
@@ -24,7 +23,6 @@ curl -sSkgi 'http://127.0.0.1/login.php' -d "uname=user&pwd=badpass" # Should ou
 # Test exploit
 curl -sSkgi 'http://127.0.0.1/login.php' -d "uname=admin';--&pwd=badpass" # Should output "Welcome back, admin!"
 ```
-
 
 ## Type juggling
 

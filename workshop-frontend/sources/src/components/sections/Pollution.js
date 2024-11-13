@@ -47,17 +47,13 @@ const Pollution = ({
         return target;
     }
 
-    function clone(target) {
-        return merge({"favorite_singer":"Rick", "favorite_song":"RickRoll"}, target);
-    }
-
     function is_admin(){
         const query = new URLSearchParams(window.location.search);
-        let admin = false;
 
         let user_obj = JSON.parse(query.get('obj'));
 
-        user_obj = clone(user_obj)
+        user_obj = merge({"favorite_singer":"Rick", "favorite_song":"RickRoll"}, user_obj);
+        console.log(user_obj); // Highly wip hehe
 
         if(window.admin === true) {
             return "Congratulations you're admin ! :D"

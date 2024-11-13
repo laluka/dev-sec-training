@@ -36,10 +36,7 @@ const Purifier = ({
         // Get the param "secret"
         const query = new URLSearchParams(window.location.search);
         const html = query.get('html');
-
-        let to_return = html;
-
-        return {__html: DOMPurify.sanitize(to_return)};
+        return {__html: DOMPurify.sanitize(html)};
     }
 
     return (

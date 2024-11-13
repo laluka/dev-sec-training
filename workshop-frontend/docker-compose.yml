@@ -3,10 +3,11 @@ version: '3.3'
 services:
   frontend:
     image: node:16.13.0
+    platform: linux/amd64
     working_dir: /sources
     tty: true
     ports:
       - 127.0.0.1:3000:3000
     volumes:
-      - ./sources:/sources:rw
-    command: bash -c "npm install && npm start"
+      - ./sources:/sources:rw # In needed, rm sources/node_modules
+    command: bash -c "echo installing deps && npm install && npm start"

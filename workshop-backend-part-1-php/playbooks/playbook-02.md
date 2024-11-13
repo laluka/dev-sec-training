@@ -2,13 +2,11 @@
 
 Welcome to this second playbook, here you'll learn about Insecure Direct Object Reference and Command Injections!
 
-
 ## IDOR
 
 Goal: Explain how this specific IDOR should be fixed, what should we implement here?
 
 Insecure Direct Object Reference consist in a user, authentified or not, being able to access data or features they shouldn't have access to. It often requires guessing the right id, keyword, or uuid to query it, as well as a lack of ownership/privilege checks.
-
 
 ```bash
 # Test feature
@@ -16,7 +14,6 @@ curl -sSki 'http://127.0.0.1/curl.php?feature=1' # Should output "Unauthenticate
 # Test exploit
 curl -sSki 'http://127.0.0.1/curl.php?feature=42' | grep -i location # Should output "Location: /curl.php?feature=42&domain=google.com"
 ```
-
 
 ## Command Injection
 
@@ -40,7 +37,6 @@ id
 # Should also be considered shell separators such as $IFS or even argument injections like
 # The tar infamous checkpoint: https://gtfobins.github.io/gtfobins/tar/#shell
 ```
-
 
 ```bash
 # Test feature

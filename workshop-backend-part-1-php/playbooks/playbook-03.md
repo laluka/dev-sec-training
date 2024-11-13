@@ -2,7 +2,6 @@
 
 Welcome to this third playbook, here you'll learn about file-upload & file-write issues, as well as a more generic "mixed filesystem & routing" deadly design-pattern!
 
-
 ## File upload/write
 
 Goal: Fix the file-write vulnerability, the exploit should not permit to write php files nor bad chars in the controles content. \

