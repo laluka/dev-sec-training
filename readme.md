@@ -23,8 +23,8 @@ Not everybody is (yet?) familiar with docker, so here are a few useful commands
 
 ```bash
 cd "workshop-backend-part-1-php" # or workshop-backend-part-2-java or workshop-frontend
-docker-compose -f docker-compose.yml rm -f
-docker-compose -f docker-compose.yml up --force-recreate --remove-orphans
+docker compose rm -f
+docker compose up --force-recreate --remove-orphans
 ```
 
 ## Content of this repo
