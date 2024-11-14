@@ -25,8 +25,11 @@ services:
     # - 127.0.0.1:3306:3306
     volumes:
       - ./sources/db/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./sources/dbdata:/var/lib/mysql:rw
+      # - ./sources/dbdata:/var/lib/mysql:rw
     command: --init-file /docker-entrypoint-initdb.d/init.sql
+    user: '1000'
+    group_add:
+      - '1000'
     environment:
       MYSQL_USER: test
       MYSQL_PASSWORD: root
